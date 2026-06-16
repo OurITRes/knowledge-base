@@ -7,12 +7,14 @@
 
 | Thème | Fiche | Portée | Validé le |
 |-------|-------|--------|-----------|
-
-_Aucune fiche pour l'instant._
+| ad-ds | [reference](active/ad-ds/reference.md) | global | 2026-06-16 |
+| ad-ds | [unattended-deployment](active/ad-ds/unattended-deployment.md) | global | 2026-06-16 |
+| coreapi | [project-goal](active/coreapi/project-goal.md) | coreapi | 2026-06-16 |
 
 ## Thèmes disponibles
 
-_(à compléter au fil des sessions)_
+- `ad-ds` — Active Directory Domain Services (LDAP, .NET DirectoryServices, déploiement)
+- `coreapi` — contexte et décisions architecturales du repo coreapi
 
 ## Consommation
 
