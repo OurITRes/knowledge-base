@@ -1,15 +1,8 @@
 # Knowledge Base — ouritres
 
-> Index léger. Le skill `maxime-kb` lit ce fichier en premier, puis charge
-> uniquement les fiches `active/` pertinentes. Ne jamais tout charger.
-
-## Fiches actives
-
-| Thème | Fiche | Portée | Validé le |
-|-------|-------|--------|-----------|
-| ad-ds | [reference](active/ad-ds/reference.md) | global | 2026-06-16 |
-| ad-ds | [unattended-deployment](active/ad-ds/unattended-deployment.md) | global | 2026-06-16 |
-| coreapi | [project-goal](active/coreapi/project-goal.md) | coreapi | 2026-06-16 |
+> L'index des fiches vit dans [`index.json`](index.json) (format JSON, un objet
+> par fiche, sans `content`). Ce fichier ne documente que les conventions
+> humaines du repo ; le skill `maxime-kb` lit `index.json`, pas ce fichier.
 
 ## Thèmes disponibles
 
@@ -23,3 +16,5 @@ Ce repo est monté comme submodule à `knowledge-base/` dans chaque repo consomm
 ```bash
 git submodule add <url> knowledge-base
 ```
+
+Voir `CLAUDE.md` pour le schéma complet des fiches JSON.

@@ -1,0 +1,86 @@
+[
+  {
+    "id": "reference",
+    "type": "reference",
+    "title": "AD DS Reference",
+    "theme": "ad-ds",
+    "tags": [
+      "ldap",
+      "kerberos",
+      "acl",
+      "dotnet",
+      "rest-api"
+    ],
+    "scope": "global",
+    "status": "active",
+    "confidence": "fact",
+    "audience": "generic",
+    "source": [
+      "ouritres/coreapi/.claude/knowledge-base/ad-ds-reference.md",
+      "https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-adts/d2435927-0999-4c62-8c6d-13ba31a52e1a",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.directoryservices.protocols",
+      "https://github.com/dotnet/dotnet-api-docs",
+      "https://github.com/KopiCloud-AD-API"
+    ],
+    "validated": "2026-06-16",
+    "created": "2026-06-16",
+    "ttl_days": 180,
+    "links": [
+      "unattended-deployment"
+    ],
+    "path": "active/ad-ds/reference.json"
+  },
+  {
+    "id": "unattended-deployment",
+    "type": "procedure",
+    "title": "Unattended Active Directory Domain Services (AD DS) Deployment",
+    "theme": "ad-ds",
+    "tags": [
+      "dcpromo",
+      "aws-ec2",
+      "unattend",
+      "dns"
+    ],
+    "scope": "global",
+    "status": "active",
+    "confidence": "fact",
+    "audience": "generic",
+    "source": [
+      "ouritres/coreapi/.claude/knowledge-base/ad-ds-unattended-deployment.md",
+      "https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/dcpromo",
+      "https://aws.amazon.com/whitepapers/active-directory-domain-services/"
+    ],
+    "validated": "2026-06-16",
+    "created": "2026-06-16",
+    "ttl_days": 180,
+    "links": [
+      "reference"
+    ],
+    "path": "active/ad-ds/unattended-deployment.json"
+  },
+  {
+    "id": "project-goal",
+    "type": "decision",
+    "title": "Project CoreAPI Goals",
+    "theme": "coreapi",
+    "tags": [
+      "architecture",
+      "dotnet",
+      "jwt"
+    ],
+    "scope": "coreapi",
+    "status": "active",
+    "confidence": "fact",
+    "audience": "project",
+    "source": [
+      "ouritres/coreapi/.claude/knowledge-base/project_coreapi_goal.md"
+    ],
+    "validated": "2026-06-16",
+    "created": "2026-06-16",
+    "ttl_days": 90,
+    "links": [
+      "reference"
+    ],
+    "path": "active/coreapi/project-goal.json"
+  }
+]

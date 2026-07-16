@@ -1,0 +1,25 @@
+{
+  "id": "project-goal",
+  "type": "decision",
+  "title": "Project CoreAPI Goals",
+  "theme": "coreapi",
+  "tags": [
+    "architecture",
+    "dotnet",
+    "jwt"
+  ],
+  "scope": "coreapi",
+  "status": "active",
+  "confidence": "fact",
+  "audience": "project",
+  "source": [
+    "ouritres/coreapi/.claude/knowledge-base/project_coreapi_goal.md"
+  ],
+  "validated": "2026-06-16",
+  "created": "2026-06-16",
+  "ttl_days": 90,
+  "links": [
+    "reference"
+  ],
+  "content": "# Project CoreAPI Goals\n\n`coreapi` is the shared AD DS gateway backend for the Ouritres GitHub org. Higher-level topic APIs (user management, group management, etc.) delegate all AD operations to this single service.\n\n**Scope (all confirmed by user):**\n\n- Talks directly to AD DS via LDAP / Kerberos / LDAPS\n- Authenticates and authorizes its own callers (the topic APIs)\n- Exposes a REST API surface to those callers\n- Owns business logic (e.g. default group memberships on user creation)\n\n**Confirmed architectural decisions:**\n\n- Decision A: C# / .NET 9 / ASP.NET Core Web API\n- Decision B: Callers authenticate via JWT Bearer token; issuer/authority is configurable at deploy time (not hardcoded to any provider)\n- Deployment: AWS (exact target TBD — ECS/EKS/Beanstalk undecided; Kerberos on Linux containers will need extra config)\n\n**Key libraries expected:**\n\n- `System.DirectoryServices.Protocols` — raw LDAP\n- `System.DirectoryServices.AccountManagement` — users/groups\n- `System.Security.AccessControl` — ACL management\n- ASP.NET Core JWT Bearer middleware — caller auth\n\n**Why:** AD DS is Microsoft-native; .NET first-party libs handle Kerberos and binary ACL structures far better than Python alternatives.\n"
+}
