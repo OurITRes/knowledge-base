@@ -5,10 +5,11 @@
     "title": "AD DS Reference",
     "theme": "ad-ds",
     "tags": [
-      "ldap",
-      "kerberos",
       "acl",
+      "auth",
       "dotnet",
+      "kerberos",
+      "ldap",
       "rest-api"
     ],
     "scope": "global",
@@ -20,9 +21,10 @@
       "https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-adts/d2435927-0999-4c62-8c6d-13ba31a52e1a",
       "https://learn.microsoft.com/en-us/dotnet/api/system.directoryservices.protocols",
       "https://github.com/dotnet/dotnet-api-docs",
-      "https://github.com/KopiCloud-AD-API"
+      "https://github.com/KopiCloud-AD-API",
+      "ouritres/coreapi/.claude/handoff/spec-0-status.md"
     ],
-    "validated": "2026-06-16",
+    "validated": "2026-07-16",
     "created": "2026-06-16",
     "ttl_days": 180,
     "links": [
@@ -36,10 +38,12 @@
     "title": "Unattended Active Directory Domain Services (AD DS) Deployment",
     "theme": "ad-ds",
     "tags": [
-      "dcpromo",
       "aws-ec2",
-      "unattend",
-      "dns"
+      "dcpromo",
+      "dns",
+      "ec2launch",
+      "ssm",
+      "unattend"
     ],
     "scope": "global",
     "status": "active",
@@ -48,9 +52,10 @@
     "source": [
       "ouritres/coreapi/.claude/knowledge-base/ad-ds-unattended-deployment.md",
       "https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/dcpromo",
-      "https://aws.amazon.com/whitepapers/active-directory-domain-services/"
+      "https://aws.amazon.com/whitepapers/active-directory-domain-services/",
+      "ouritres/coreapi/.claude/handoff/spec-0-status.md"
     ],
-    "validated": "2026-06-16",
+    "validated": "2026-07-16",
     "created": "2026-06-16",
     "ttl_days": 180,
     "links": [
@@ -82,5 +87,31 @@
       "reference"
     ],
     "path": "active/coreapi/project-goal.json"
+  },
+  {
+    "id": "native-exe-json-quoting",
+    "type": "pattern",
+    "title": "PowerShell 5.1 strips quotes when passing JSON to native executables",
+    "theme": "powershell",
+    "tags": [
+      "powershell",
+      "aws-cli",
+      "windows",
+      "quoting"
+    ],
+    "scope": "global",
+    "status": "active",
+    "confidence": "fact",
+    "audience": "generic",
+    "source": [
+      "ouritres/coreapi/.claude/memory/spec-0-learnings.md"
+    ],
+    "validated": "2026-07-16",
+    "created": "2026-07-16",
+    "ttl_days": 180,
+    "links": [
+      "unattended-deployment"
+    ],
+    "path": "active/powershell/native-exe-json-quoting.json"
   }
 ]

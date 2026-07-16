@@ -8,6 +8,7 @@
 
 - `ad-ds` — Active Directory Domain Services (LDAP, .NET DirectoryServices, déploiement)
 - `coreapi` — contexte et décisions architecturales du repo coreapi
+- `powershell` — patterns PowerShell/Windows génériques (pas spécifiques à AD DS)
 
 ## Consommation
 
