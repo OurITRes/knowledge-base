@@ -1,0 +1,17 @@
+{
+  "id": "codex-agents-md-nesting",
+  "type": "reference",
+  "title": "OpenAI Codex — imbrication et fusion des fichiers AGENTS.md",
+  "theme": "codex-config",
+  "tags": ["codex", "agents-md", "config-merge"],
+  "scope": "global",
+  "status": "active",
+  "confidence": "fact",
+  "audience": "generic",
+  "source": ["https://learn.chatgpt.com/docs/agent-configuration/agents-md"],
+  "validated": "2026-07-16",
+  "created": "2026-07-16",
+  "ttl_days": 90,
+  "links": ["claude-md-import-mechanism", "copilot-instructions-merge"],
+  "content": "# OpenAI Codex — imbrication et fusion des fichiers AGENTS.md\n\nRecherche du 2026-07-16, motivée par l'issue mA.xI.me #27.\n\n## Ce qui est confirmé (sourcé)\n\n- Support officiel de fichiers AGENTS.md imbriqués, fusionnés de la racine vers la feuille, concaténés avec des lignes vides ; les fichiers les plus proches du cwd sont ajoutés en dernier et peuvent surcharger les instructions précédentes. Source : https://learn.chatgpt.com/docs/agent-configuration/agents-md\n- Un mécanisme explicite AGENTS.override.md existe, au niveau global (~/.codex/) comme à tout niveau de dossier projet ; Codex vérifie d'abord la présence d'un override, puis se rabat sur AGENTS.md, puis sur les noms de fallback configurés — au plus un fichier utilisé par dossier.\n- Aucune syntaxe d'import/inclusion à l'intérieur d'un seul AGENTS.md — la fusion est purement basée sur la hiérarchie de dossiers.\n- Plafond de taille : 32 KiB combinés par défaut (project_doc_max_bytes), configurable.\n- Le site de spécification communautaire agents.md corrobore : \"le AGENTS.md le plus proche gagne\", conçu explicitement pour des instructions par paquet dans des monorepos (cite le repo d'OpenAI lui-même utilisant 88 fichiers AGENTS.md).\n\n## Incertitudes explicites\n\n- Aucune issue GitHub ni fil Reddit/HN trouvé spécifiquement sur un outil qui réécrit un contenu AGENTS.md écrit à la main — les recherches n'ont renvoyé que de la documentation officielle ou dérivée, aucun fil de plainte concret.\n- Aucune couverture YouTube trouvée traitant spécifiquement de ce problème de coexistence.\n\n## Recommandation pour mA.xI.me (issue #27)\n\nPartielle : pas de syntaxe d'import, mais le mécanisme override + fichiers imbriqués donne une voie équivalente — plus directement, faire écrire par le générateur dans AGENTS.override.md au lieu de AGENTS.md au même niveau de dossier, laissant tout AGENTS.md pré-existant écrit à la main intact et toujours utilisé comme couche de base que l'override étend. C'est un détournement du mécanisme (les fichiers override étaient conçus pour restreindre, pas pour séparer outil/humain) — à traiter comme fonctionnel mais non validé par la doc pour cet usage précis.\n\n## Sources\n- https://learn.chatgpt.com/docs/agent-configuration/agents-md"
+}
