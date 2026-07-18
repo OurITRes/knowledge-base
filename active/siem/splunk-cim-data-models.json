@@ -1,0 +1,28 @@
+{
+  "id": "splunk-cim-data-models",
+  "type": "reference",
+  "title": "Splunk CIM — modèles Authentication et Change",
+  "theme": "siem",
+  "tags": [
+    "splunk",
+    "cim",
+    "audit-log",
+    "authentication",
+    "change"
+  ],
+  "scope": "global",
+  "status": "suspect",
+  "confidence": "hypothesis",
+  "audience": "generic",
+  "source": [
+    "https://help.splunk.com/en/data-management/common-information-model/6.2/data-models/authentication",
+    "https://help.splunk.com/en/splunk-cloud-platform/common-information-model/6.1/data-models/cim-fields-per-associated-data-model",
+    "https://help.splunk.com/en/data-management/common-information-model/6.2/field-mappings/change-field-mapping",
+    "https://help.splunk.com/en/splunk-enterprise/common-information-model"
+  ],
+  "validated": "2026-07-18",
+  "created": "2026-07-18",
+  "ttl_days": 60,
+  "links": [],
+  "content": "# Splunk Common Information Model (CIM) — Authentication et Change\n\n**Statut `suspect`/`hypothesis` dès la création** : récupéré via un outil de résumé automatique, `docs.splunk.com` retournait 403 sur un accès direct. La liste du modèle Change en particulier n'a pas confirmé explicitement le statut requis/recommandé par champ. À revalider contre l'add-on CIM réellement installé sur l'instance Splunk cible avant tout usage en production (`ttl_days` volontairement court : 60).\n\n## Pourquoi CIM\n\nAligner un log applicatif sur un modèle CIM existant permet aux détections et rapports de conformité déjà construits côté SOC (Splunk Enterprise Security) de reconnaître l'événement automatiquement, sans parsing custom.\n\n## Data model Authentication\n\nÉvénement de validation d'identité (login, validation de jeton).\n\n**Champs requis** : `action`, `app`, `user`, `src`, `dest`.\n\n**Champs recommandés** : `src_user`, `user_id`, `user_role`, `user_type`, `authentication_method`, `authentication_service`, `duration`, `process`, `reason_id`, `response_time`, `signature`, `signature_id`, `user_agent`, `user_bunit`, `user_category`, `user_priority`.\n\n## Data model Change\n\nÉvénement de type Create/Read/Update/Delete sur un objet quelconque — c'est le modèle naturel pour une API qui fait du CRUD sur des objets d'annuaire ou toute ressource administrée.\n\n**Champs observés** (statut requis/recommandé non confirmé) : `action`, `change_type`, `command`, `dest`, `dest_bunit`, `dest_category`, `dest_ip_range`, `dest_nt_domain`, `dest_port_range`, `dest_priority`, `direction`, `dvc`, `image_id`, `instance_type`, `object`, `object_attrs`, `object_category`, `object_id`, `object_path`, `result`, `status`, `user`, `vendor_product`.\n\nSémantique à retenir : dans ce modèle, `user` désigne **qui effectue l'action**, pas l'objet ciblé par l'action — la cible se décrit via `object`/`object_category`/`object_id`/`object_path`.\n\n## Champs d'enveloppe d'indexation Splunk (hors CIM)\n\nDistincts des champs de contenu CIM ci-dessus : `time`/`timestamp`, `host`, `source`, `sourcetype`, `index` — gérés à l'ingestion, pas dans le corps de l'événement applicatif."
+}

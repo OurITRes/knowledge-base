@@ -1,0 +1,30 @@
+{
+  "id": "sailpoint-identityiq",
+  "type": "reference",
+  "title": "SailPoint IdentityIQ (IIQ) — gouvernance d'accès et workflows d'approbation",
+  "theme": "governance",
+  "tags": [
+    "iam",
+    "iga",
+    "sailpoint",
+    "access-request",
+    "approval",
+    "sod"
+  ],
+  "scope": "global",
+  "status": "active",
+  "confidence": "fact",
+  "audience": "generic",
+  "source": [
+    "https://documentation.sailpoint.com/saas/help/requests/index.html",
+    "https://documentation.sailpoint.com/saas/help/requests/config_ap_roles.html",
+    "https://developer.sailpoint.com/docs/api/v3/access-request-approvals/"
+  ],
+  "validated": "2026-07-18",
+  "created": "2026-07-18",
+  "ttl_days": 180,
+  "links": [
+    "servicenow-itsm-change-management"
+  ],
+  "content": "# SailPoint IdentityIQ (IIQ)\n\nPlateforme IGA (Identity Governance and Administration). Rôle générique : gérer le cycle de vie complet des demandes d'accès — de la demande à l'approbation puis au provisioning — avec un contrôle de politique et une trace d'audit à chaque étape.\n\n## Flux de demande d'accès type\n\nUn utilisateur (ou son manager) demande un accès (rôle, entitlement, groupe) → IdentityIQ vérifie la demande contre les politiques de séparation des tâches (SoD — Segregation/Separation of Duties) et autres règles → la demande est routée vers le ou les approbateurs pertinents → une fois approuvée, l'accès est provisionné automatiquement. Chaque étape est journalisée — c'est la trace d'audit sur laquelle s'appuient les équipes conformité.\n\n## Chemins d'approbation configurables\n\nPour un entitlement/access profile : approbation par le owner de l'access profile, le owner de l'application, le owner de la source, le manager du demandeur, ou un groupe de gouvernance dédié.\nPour un rôle : mêmes options (owner du rôle, manager, groupe de gouvernance).\nDes chemins d'approbation dynamiques peuvent varier selon le type d'accès demandé, le rôle du demandeur, et un niveau de risque calculé — les demandes à haut risque déclenchent une revue plus stricte, les demandes à faible risque peuvent être accélérées.\n\n## Gouvernance des rôles (Role Lifecycle)\n\nIdentityIQ gère le cycle de vie complet d'un rôle : création/modification via le Role Editor, avec possibilité de déclencher un workflow d'approbation avant qu'un changement de rôle ne soit promu en production. Pertinent pour la gouvernance de l'appartenance à un groupe AD sensible (ex. groupe Tier 0/Control Plane) : la double approbation pour rejoindre un tel groupe s'appuie typiquement sur ce mécanisme.\n\n## API REST\n\nIdentityIQ expose une API REST pour les demandes d'accès et leurs approbations (`access-request-approvals`). Pertinent pour toute vérification API-à-API future entre un système consommateur et IIQ, plutôt qu'une simple confiance déclarative dans un jeton émis."
+}

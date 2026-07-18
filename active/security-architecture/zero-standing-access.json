@@ -1,0 +1,27 @@
+{
+  "id": "zero-standing-access",
+  "type": "glossary",
+  "title": "Zero standing access, secretless, et gMSA — principes",
+  "theme": "security-architecture",
+  "tags": [
+    "zero-standing-access",
+    "secretless",
+    "gmsa",
+    "jit",
+    "pam"
+  ],
+  "scope": "global",
+  "status": "active",
+  "confidence": "fact",
+  "audience": "generic",
+  "source": [
+    "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/group-managed-service-accounts/group-managed-service-accounts-overview"
+  ],
+  "validated": "2026-07-18",
+  "created": "2026-07-18",
+  "ttl_days": 180,
+  "links": [
+    "enterprise-access-model"
+  ],
+  "content": "# Zero standing access, secretless, gMSA\n\nTrois principes distincts, souvent combinés, à ne pas confondre.\n\n## Zero standing access (zero standing privilege)\n\nUn compte ne détient **aucun privilège actif en permanence** — le privilège est accordé (élévation, activation, bail temporaire) seulement pour la fenêtre d'usage, puis retiré. Différent de \"least privilege\" (qui limite la *portée* du privilège) : zero standing access limite la *durée*. Typiquement implémenté via un système PAM externe (ex. HashiCorp Vault, CyberArk) qui orchestre l'activation/désactivation ou la rotation JIT (just-in-time) d'un credential.\n\n## Secretless\n\nDirection architecturale : éliminer la manipulation de secrets statiques (mots de passe en clair, clés API en dur) par le code applicatif. Concrètement pour l'authentification Windows/AD : préférer un mécanisme qui produit un **ticket Kerberos** (via délégation, gMSA + `credentials-fetcher`, etc.) plutôt qu'un bind LDAP avec `AuthType.Basic` et un mot de passe explicite. Le processus applicatif ne voit jamais le secret sous-jacent.\n\n## gMSA (Group Managed Service Account)\n\nType de compte de service AD dont le mot de passe est **généré et tourné automatiquement par AD** (~30 jours par défaut), jamais connu d'un humain ni stocké en dur par une application. Un gMSA seul règle \"pas de mot de passe statique connu\" mais **pas** zero standing access : le compte reste activé et utilisable en continu entre deux rotations. Pour obtenir zero standing access, combiner le gMSA avec une couche JIT supplémentaire (ex. compte désactivé par défaut, activé seulement pour la fenêtre d'usage via un système externe) — les deux mécanismes sont complémentaires, pas substituables l'un à l'autre.\n\nSur AWS ECS/Fargate, le daemon `credentials-fetcher` récupère le mot de passe géré du gMSA (`msDS-ManagedPassword`) via LDAPS et produit un ticket Kerberos mis à disposition du conteneur — le conteneur ne manipule jamais le mot de passe brut. Support gMSA natif sur Fargate depuis mars 2024."
+}

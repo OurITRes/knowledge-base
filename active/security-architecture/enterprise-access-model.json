@@ -1,0 +1,28 @@
+{
+  "id": "enterprise-access-model",
+  "type": "glossary",
+  "title": "Enterprise Access Model (EAM) — plans de sensibilité Microsoft",
+  "theme": "security-architecture",
+  "tags": [
+    "eam",
+    "tiering",
+    "control-plane",
+    "management-plane",
+    "data-workload-plane",
+    "microsoft"
+  ],
+  "scope": "global",
+  "status": "active",
+  "confidence": "fact",
+  "audience": "generic",
+  "source": [
+    "https://learn.microsoft.com/en-us/security/privileged-access-workstations/privileged-access-access-model"
+  ],
+  "validated": "2026-07-18",
+  "created": "2026-07-18",
+  "ttl_days": 180,
+  "links": [
+    "zero-standing-access"
+  ],
+  "content": "# Enterprise Access Model (EAM)\n\nSuccesseur du modèle de tiering AD classique (Tier 0/1/2). Remplace la hiérarchie linéaire par trois **plans de sensibilité**. Un plan décrit *où vit un actif et à quel niveau de sensibilité*, pas *comment on y accède* — c'est un axe distinct du chemin d'accès/gouvernance (voir la nuance dans les décisions spécifiques à chaque projet, pas dans cette fiche générique).\n\n## Les trois plans\n\n| Plan | Contenu | Exemple |\n|---|---|---|\n| **Control Plane** | Les systèmes qui contrôlent l'identité et la sécurité elles-mêmes — équivaut à l'ancien Tier 0 | Domain Admins, Enterprise Admins, Schema Admins, structure des ACL, systèmes d'identité centralisés |\n| **Management Plane** | Fonctions de gestion IT à l'échelle de l'entreprise — gouverne les workloads et l'infrastructure qui les héberge | Outils de gouvernance/gestion (IIQ, ServiceNow, PAM), gestion d'infrastructure on-prem/cloud |\n| **Data/Workload Plane** | Les applications et données — l'essentiel de la valeur métier à protéger | Comptes utilisateurs standards, comptes de service applicatifs, groupes/OU ordinaires |\n\n## Principe clé\n\n**Enforce hierarchy** — empêcher qu'un plan de niveau supérieur (plus sensible) soit contrôlé depuis un plan inférieur, que ce soit par attaque ou par abus d'un processus légitime. Le Data/Workload plane est gouverné par le Management plane, qui est lui-même protégé par le Control plane — jamais l'inverse.\n\n## Erreur fréquente à éviter\n\nNe pas faire correspondre les plans 1-pour-1 avec des \"chemins d'accès techniques\" (ex. compte utilisateur / compte applicatif / compte privilégié). Le nombre de chemins d'accès techniques qu'une organisation choisit d'implémenter est une décision d'architecture propre à chaque système — pas une conséquence mécanique du nombre de plans EAM."
+}
