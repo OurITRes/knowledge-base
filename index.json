@@ -1,1 +1,379 @@
-@.wip/tmp/kb-publish-index.json
+[
+  {
+    "id": "reference",
+    "type": "reference",
+    "title": "AD DS Reference",
+    "theme": "ad-ds",
+    "tags": [
+      "acl",
+      "auth",
+      "dotnet",
+      "kerberos",
+      "ldap",
+      "rest-api"
+    ],
+    "scope": "global",
+    "status": "active",
+    "confidence": "fact",
+    "audience": "generic",
+    "source": [
+      "ouritres/coreapi/.claude/knowledge-base/ad-ds-reference.md",
+      "https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-adts/d2435927-0999-4c62-8c6d-13ba31a52e1a",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.directoryservices.protocols",
+      "https://github.com/dotnet/dotnet-api-docs",
+      "https://github.com/KopiCloud-AD-API",
+      "ouritres/coreapi/.claude/handoff/spec-0-status.md"
+    ],
+    "validated": "2026-07-16",
+    "created": "2026-06-16",
+    "ttl_days": 180,
+    "links": [
+      "unattended-deployment"
+    ],
+    "path": "active/ad-ds/reference.json"
+  },
+  {
+    "id": "unattended-deployment",
+    "type": "procedure",
+    "title": "Unattended Active Directory Domain Services (AD DS) Deployment",
+    "theme": "ad-ds",
+    "tags": [
+      "aws-ec2",
+      "dcpromo",
+      "dns",
+      "ec2launch",
+      "ssm",
+      "unattend"
+    ],
+    "scope": "global",
+    "status": "active",
+    "confidence": "fact",
+    "audience": "generic",
+    "source": [
+      "ouritres/coreapi/.claude/knowledge-base/ad-ds-unattended-deployment.md",
+      "https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/dcpromo",
+      "https://aws.amazon.com/whitepapers/active-directory-domain-services/",
+      "ouritres/coreapi/.claude/handoff/spec-0-status.md"
+    ],
+    "validated": "2026-07-16",
+    "created": "2026-06-16",
+    "ttl_days": 180,
+    "links": [
+      "reference"
+    ],
+    "path": "active/ad-ds/unattended-deployment.json"
+  },
+  {
+    "id": "project-goal",
+    "type": "decision",
+    "title": "Project CoreAPI Goals",
+    "theme": "coreapi",
+    "tags": [
+      "architecture",
+      "dotnet",
+      "jwt"
+    ],
+    "scope": "coreapi",
+    "status": "active",
+    "confidence": "fact",
+    "audience": "project",
+    "source": [
+      "ouritres/coreapi/.claude/knowledge-base/project_coreapi_goal.md"
+    ],
+    "validated": "2026-06-16",
+    "created": "2026-06-16",
+    "ttl_days": 90,
+    "links": [
+      "reference"
+    ],
+    "path": "active/coreapi/project-goal.json"
+  },
+  {
+    "id": "native-exe-json-quoting",
+    "type": "pattern",
+    "title": "PowerShell 5.1 strips quotes when passing JSON to native executables",
+    "theme": "powershell",
+    "tags": [
+      "powershell",
+      "aws-cli",
+      "windows",
+      "quoting"
+    ],
+    "scope": "global",
+    "status": "active",
+    "confidence": "fact",
+    "audience": "generic",
+    "source": [
+      "ouritres/coreapi/.claude/memory/spec-0-learnings.md"
+    ],
+    "validated": "2026-07-16",
+    "created": "2026-07-16",
+    "ttl_days": 180,
+    "links": [
+      "unattended-deployment"
+    ],
+    "path": "active/powershell/native-exe-json-quoting.json"
+  },
+  {
+    "id": "agent-skills-cross-tool-integration",
+    "type": "reference",
+    "title": "Agent Skills -- standard ouvert cross-outil (Claude Code, Copilot/VS Code, Codex)",
+    "theme": "agent-tooling",
+    "tags": [
+      "skills",
+      "vscode",
+      "copilot",
+      "codex",
+      "tool-scoping"
+    ],
+    "scope": "global",
+    "status": "active",
+    "confidence": "fact",
+    "audience": "generic",
+    "source": [
+      "https://agentskills.io",
+      "https://github.com/microsoft/vscode/issues/293276",
+      "https://github.com/microsoft/vscode/issues/307630"
+    ],
+    "validated": "2026-07-13",
+    "created": "2026-07-13",
+    "ttl_days": 90,
+    "links": [
+      "vscode-copilot-builtin-tools"
+    ],
+    "path": "active/agent-tooling/agent-skills-cross-tool-integration.json"
+  },
+  {
+    "id": "vscode-copilot-builtin-tools",
+    "type": "reference",
+    "title": "VS Code / GitHub Copilot Chat -- outils built-in (tools: frontmatter)",
+    "theme": "vscode-copilot",
+    "tags": [
+      "vscode",
+      "copilot",
+      "tools",
+      "builtin"
+    ],
+    "scope": "global",
+    "status": "active",
+    "confidence": "fact",
+    "audience": "generic",
+    "source": [
+      "https://docs.github.com/en/copilot/reference/custom-agents-configuration",
+      "https://github.blog/ai-and-ml/github-copilot/how-were-making-github-copilot-smarter-with-fewer-tools/"
+    ],
+    "validated": "2026-07-13",
+    "created": "2026-07-12",
+    "ttl_days": 90,
+    "links": [
+      "agent-skills-cross-tool-integration"
+    ],
+    "path": "active/vscode-copilot/vscode-copilot-builtin-tools.json"
+  },
+  {
+    "id": "claude-md-hierarchie",
+    "type": "reference",
+    "title": "Hiérarchie & chargement des CLAUDE.md (Claude Code)",
+    "theme": "claude-config",
+    "tags": [
+      "claude-code",
+      "claude-md",
+      "memory"
+    ],
+    "scope": "global",
+    "status": "active",
+    "confidence": "fact",
+    "audience": "generic",
+    "source": [
+      "https://code.claude.com/docs/en/memory"
+    ],
+    "validated": "2026-06-16",
+    "created": "2026-06-16",
+    "ttl_days": 90,
+    "links": [
+      "claude-md-import-mechanism"
+    ],
+    "path": "active/claude-config/claude-md-hierarchie.json"
+  },
+  {
+    "id": "claude-md-import-mechanism",
+    "type": "reference",
+    "title": "Claude Code — mécanisme d'import @fichier pour CLAUDE.md",
+    "theme": "claude-config",
+    "tags": [
+      "claude-code",
+      "claude-md",
+      "import",
+      "config-merge"
+    ],
+    "scope": "global",
+    "status": "active",
+    "confidence": "fact",
+    "audience": "generic",
+    "source": [
+      "https://code.claude.com/docs/en/memory",
+      "https://github.com/anthropics/claude-code/issues/2950",
+      "https://github.com/anthropics/claude-code/issues/8533",
+      "https://github.com/anthropics/claude-code/issues/1041",
+      "https://github.com/anthropics/claude-code/issues/5231",
+      "https://github.com/anthropics/claude-code/issues/7768"
+    ],
+    "validated": "2026-07-16",
+    "created": "2026-07-16",
+    "ttl_days": 90,
+    "links": [
+      "claude-md-hierarchie",
+      "copilot-instructions-merge",
+      "codex-agents-md-nesting"
+    ],
+    "path": "active/claude-config/claude-md-import-mechanism.json"
+  },
+  {
+    "id": "copilot-instructions-merge",
+    "type": "reference",
+    "title": "GitHub Copilot — fusion automatique de fichiers d'instructions multiples",
+    "theme": "vscode-copilot",
+    "tags": [
+      "copilot",
+      "vscode",
+      "instructions",
+      "config-merge"
+    ],
+    "scope": "global",
+    "status": "active",
+    "confidence": "fact",
+    "audience": "generic",
+    "source": [
+      "https://code.visualstudio.com/docs/agent-customization/custom-instructions",
+      "https://github.com/orgs/community/discussions/170581"
+    ],
+    "validated": "2026-07-16",
+    "created": "2026-07-16",
+    "ttl_days": 90,
+    "links": [
+      "vscode-copilot-builtin-tools",
+      "claude-md-import-mechanism",
+      "codex-agents-md-nesting"
+    ],
+    "path": "active/vscode-copilot/copilot-instructions-merge.json"
+  },
+  {
+    "id": "codex-agents-md-nesting",
+    "type": "reference",
+    "title": "OpenAI Codex — imbrication et fusion des fichiers AGENTS.md",
+    "theme": "codex-config",
+    "tags": [
+      "codex",
+      "agents-md",
+      "config-merge"
+    ],
+    "scope": "global",
+    "status": "active",
+    "confidence": "fact",
+    "audience": "generic",
+    "source": [
+      "https://learn.chatgpt.com/docs/agent-configuration/agents-md"
+    ],
+    "validated": "2026-07-16",
+    "created": "2026-07-16",
+    "ttl_days": 90,
+    "links": [
+      "claude-md-import-mechanism",
+      "copilot-instructions-merge"
+    ],
+    "path": "active/codex-config/codex-agents-md-nesting.json"
+  },
+  {
+    "id": "claude-code-models",
+    "type": "reference",
+    "title": "Claude Code — moteurs (modèles) et effort, catalogue + qui décide",
+    "theme": "engine-catalog",
+    "tags": [
+      "claude-code",
+      "models",
+      "effort",
+      "subagents",
+      "engine-catalog"
+    ],
+    "scope": "global",
+    "status": "active",
+    "confidence": "fact",
+    "audience": "generic",
+    "source": [
+      "https://code.claude.com/docs/en/sub-agents",
+      "https://code.claude.com/docs/en/agent-sdk/subagents",
+      "https://platform.claude.com/docs/en/build-with-claude/effort",
+      "https://github.com/anthropics/claude-code/issues/25669"
+    ],
+    "validated": "2026-07-16",
+    "created": "2026-07-16",
+    "ttl_days": 60,
+    "links": [
+      "copilot-models",
+      "codex-models"
+    ],
+    "path": "active/engine-catalog/claude-code-models.json"
+  },
+  {
+    "id": "copilot-models",
+    "type": "reference",
+    "title": "GitHub Copilot — moteurs (modèles) et effort, catalogue + qui décide (CLI/VS Code et cloud agent)",
+    "theme": "engine-catalog",
+    "tags": [
+      "copilot",
+      "models",
+      "effort",
+      "cloud-agent",
+      "engine-catalog"
+    ],
+    "scope": "global",
+    "status": "active",
+    "confidence": "fact",
+    "audience": "generic",
+    "source": [
+      "https://docs.github.com/en/copilot/reference/custom-agents-configuration",
+      "https://github.com/github/copilot-cli/issues/2758",
+      "https://github.com/github/copilot-cli/issues/2904",
+      "https://docs.github.com/en/copilot/how-tos/use-copilot-agents/coding-agent/changing-the-ai-model",
+      "https://github.blog/changelog/2026-05-14-copilot-cloud-agent-supports-auto-model-selection/",
+      "https://github.blog/changelog/2026-04-14-model-selection-for-claude-and-codex-agents-on-github-com/"
+    ],
+    "validated": "2026-07-16",
+    "created": "2026-07-16",
+    "ttl_days": 60,
+    "links": [
+      "claude-code-models",
+      "codex-models"
+    ],
+    "path": "active/engine-catalog/copilot-models.json"
+  },
+  {
+    "id": "codex-models",
+    "type": "reference",
+    "title": "Codex — moteurs (modèles) et effort, catalogue + qui décide",
+    "theme": "engine-catalog",
+    "tags": [
+      "codex",
+      "models",
+      "effort",
+      "engine-catalog"
+    ],
+    "scope": "global",
+    "status": "active",
+    "confidence": "fact",
+    "audience": "generic",
+    "source": [
+      "https://learn.chatgpt.com/docs/config-file/config-reference",
+      "https://learn.chatgpt.com/docs/config-file/config-advanced",
+      "https://github.com/openai/codex/issues/11795"
+    ],
+    "validated": "2026-07-16",
+    "created": "2026-07-16",
+    "ttl_days": 60,
+    "links": [
+      "claude-code-models",
+      "copilot-models"
+    ],
+    "path": "active/engine-catalog/codex-models.json"
+  }
+]
