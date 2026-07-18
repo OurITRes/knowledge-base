@@ -1,1 +1,21 @@
-@.wip/kb/active/engine-catalog/codex-models.json
+{
+  "id": "codex-models",
+  "type": "reference",
+  "title": "Codex — moteurs (modèles) et effort, catalogue + qui décide",
+  "theme": "engine-catalog",
+  "tags": ["codex", "models", "effort", "engine-catalog"],
+  "scope": "global",
+  "status": "active",
+  "confidence": "fact",
+  "audience": "generic",
+  "source": [
+    "https://learn.chatgpt.com/docs/config-file/config-reference",
+    "https://learn.chatgpt.com/docs/config-file/config-advanced",
+    "https://github.com/openai/codex/issues/11795"
+  ],
+  "validated": "2026-07-16",
+  "created": "2026-07-16",
+  "ttl_days": 60,
+  "links": ["claude-code-models", "copilot-models"],
+  "content": "# Codex — moteurs (modèles) et effort\n\n## Correction d'une hypothèse de recherche antérieure\n\nLa spec de travail précédente (2026-07-16, avant cette fiche) citait une source tierce non officielle (`codex.danielvaughan.com`, un blog) affirmant que Codex serait \"probablement auto-configurable via un fichier de config par agent\". **Vérifié sur source officielle OpenAI ce jour et infirmé** : `model` et `model_reasoning_effort` sont des réglages **globaux/de profil**, pas par agent ou sous-agent.\n\n## Ce qui est confirmé sur source officielle\n\n- **`model`** (ex. `gpt-5.5`) et **`model_reasoning_effort`** (`none`/`minimal`/`low`/`medium`/`high`/`xhigh` — `xhigh` dépend du modèle ; s'applique à la Responses API uniquement) sont définis dans `~/.codex/config.toml`, au niveau global de l'utilisateur.\n- **Profils** : des couches de configuration nommées, activées via `--profile nom-du-profil` en CLI, qui surchargent la config de base — un choix fait **avant le lancement**, par un humain (ou un script qui invoque la CLI), jamais pendant une session en cours.\n- **Aucune surcharge par agent, sous-agent, session ou requête individuelle n'est documentée** pour `model`/`model_reasoning_effort`. Une section `[agents]` existe bien dans `config.toml` pour configurer des **rôles** de sous-agents, mais rien dans la documentation officielle ne montre qu'elle couvre le modèle ou l'effort — elle configure autre chose (comportement/rôle, pas moteur).\n- **Aucun mécanisme documenté pour qu'une session Codex en cours change son propre modèle ou effort en cours de route** — fixé au lancement par la configuration.\n- Confirmation supplémentaire par l'absence : une issue GitHub officielle du dépôt `openai/codex`, encore ouverte, demande explicitement cette capacité (\"Allow configuring subagent model and reasoning_effort in config\", [#11795](https://github.com/openai/codex/issues/11795)) — la demande elle-même confirme que ça n'existe pas encore.\n\n## Conséquence pour Maxime\n\nTraiter Codex comme Copilot, pas comme Claude Code : Maxime ne peut pas configurer lui-même le modèle ou l'effort pour une tâche ou un sous-agent Codex. Il peut seulement **recommander** un modèle/effort informé par le catalogue et **demander** à l'utilisateur de le sélectionner (choix de profil ou flag `--model`/`--config model_reasoning_effort=...` avant le lancement). Repasser en mode \"auto-configurable comme Claude\" seulement si OpenAI documente officiellement une surcharge par agent/sous-agent dans une future version — revalider via `ttl_days` avant de considérer ce point comme stable.\n\n## Ce qui reste incertain\n\n- Le contenu exact de la section `[agents]` (quels attributs de \"rôle\" elle couvre réellement) n'a pas été creusé en détail — hors périmètre de cette fiche, qui se limite à la question modèle/effort.\n"
+}

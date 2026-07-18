@@ -1,1 +1,24 @@
-@.wip/kb/active/engine-catalog/copilot-models.json
+{
+  "id": "copilot-models",
+  "type": "reference",
+  "title": "GitHub Copilot — moteurs (modèles) et effort, catalogue + qui décide (CLI/VS Code et cloud agent)",
+  "theme": "engine-catalog",
+  "tags": ["copilot", "models", "effort", "cloud-agent", "engine-catalog"],
+  "scope": "global",
+  "status": "active",
+  "confidence": "fact",
+  "audience": "generic",
+  "source": [
+    "https://docs.github.com/en/copilot/reference/custom-agents-configuration",
+    "https://github.com/github/copilot-cli/issues/2758",
+    "https://github.com/github/copilot-cli/issues/2904",
+    "https://docs.github.com/en/copilot/how-tos/use-copilot-agents/coding-agent/changing-the-ai-model",
+    "https://github.blog/changelog/2026-05-14-copilot-cloud-agent-supports-auto-model-selection/",
+    "https://github.blog/changelog/2026-04-14-model-selection-for-claude-and-codex-agents-on-github-com/"
+  ],
+  "validated": "2026-07-16",
+  "created": "2026-07-16",
+  "ttl_days": 60,
+  "links": ["claude-code-models", "codex-models"],
+  "content": "# GitHub Copilot — moteurs (modèles) et effort\n\nDeux surfaces distinctes chez Copilot, vérifiées séparément : les agents personnalisés CLI/VS Code (fichiers `.agent.md`) et le **cloud agent** (github.com — issues assignées, commentaires `@copilot`, agents tab). Conclusion identique sur le fond pour les deux : **jamais auto-configurable par l'agent lui-même**, mais les mécanismes diffèrent.\n\n## CLI / VS Code (agents personnalisés `.agent.md`)\n\n- **`model` : fixé par un humain à l'écriture du fichier, jamais changé par l'agent en cours d'exécution.** Le frontmatter `model:` d'un agent personnalisé contrôle le modèle utilisé (VS Code, JetBrains, Eclipse, Xcode). Un `model` passé programmatiquement à un appel `task()` est **silencieusement ramené au modèle de session par défaut** — confirmé par une issue GitHub officielle du dépôt `github/copilot-cli` encore ouverte ([#2758](https://github.com/github/copilot-cli/issues/2758), présentée comme un garde-fou de coût intentionnel, pas un bug).\n- **`effort` : n'existe pas dans le frontmatter d'agent personnalisé aujourd'hui.** Feature request encore ouverte ([#2904](https://github.com/github/copilot-cli/issues/2904), \"Custom Agent YAML Frontmatter Should Support Reasoning Effort\") — pas de mécanisme équivalent au `effort`/`model_reasoning_effort` de Claude ou Codex côté Copilot à ce jour. Seul un humain change le modèle, via `/model` ou le picker VS Code ; il n'y a rien d'équivalent à changer pour l'effort.\n\n## Cloud agent (github.com)\n\n- **`model` : sélection humaine uniquement, confirmée explicitement.** \"Only human users select the model. The agent does not programmatically choose or change its model during a task.\" Disponible aux points d'entrée supportés : assignation d'issue, mention `@copilot` en commentaire de PR, agents tab/panel, GitHub Mobile, lanceur Raycast. Modèles proposés (2026) : Claude Opus 4.5/4.6, Claude Sonnet 4.5/4.6, Claude Haiku 4.5, GPT-5.1-Codex-Max, GPT-5.2/5.3-Codex, GPT-5.4-mini.\n- **Option \"Auto\" : une troisième voie, ni humaine au cas par cas, ni agent.** Si l'utilisateur sélectionne \"Auto\" dans le picker (choix humain fait une fois, avant la tâche), la plateforme elle-même choisit ensuite le modèle \"based on system health and model performance\" — routage de plateforme, pas une décision de l'agent en cours de tâche. Avantage : remise de 10% sur le multiplicateur, exempté des limites de débit hebdomadaires.\n- **`effort` : aucune mention dans la documentation officielle du cloud agent.** Pas de sélecteur d'effort trouvé pour cette surface.\n\n## Conséquence pour Maxime\n\nSur les trois surfaces Copilot (CLI, VS Code, cloud agent), Maxime ne peut ni choisir ni faire varier le modèle ou l'effort par lui-même : il peut seulement **recommander** un choix informé par le catalogue et **demander** à l'utilisateur de le faire (via `/model`, le picker VS Code, ou le picker du cloud agent) — contrainte de plateforme, pas un choix de conception mA.xI.me.\n\n## Ce qui reste incertain\n\n- Aucune source officielle ne documente un sélecteur d'effort pour le cloud agent — absence constatée dans les pages consultées, pas une confirmation qu'il n'existe nulle part sur la plateforme.\n"
+}

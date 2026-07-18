@@ -1,1 +1,22 @@
-@.wip/kb/active/engine-catalog/claude-code-models.json
+{
+  "id": "claude-code-models",
+  "type": "reference",
+  "title": "Claude Code — moteurs (modèles) et effort, catalogue + qui décide",
+  "theme": "engine-catalog",
+  "tags": ["claude-code", "models", "effort", "subagents", "engine-catalog"],
+  "scope": "global",
+  "status": "active",
+  "confidence": "fact",
+  "audience": "generic",
+  "source": [
+    "https://code.claude.com/docs/en/sub-agents",
+    "https://code.claude.com/docs/en/agent-sdk/subagents",
+    "https://platform.claude.com/docs/en/build-with-claude/effort",
+    "https://github.com/anthropics/claude-code/issues/25669"
+  ],
+  "validated": "2026-07-16",
+  "created": "2026-07-16",
+  "ttl_days": 60,
+  "links": ["copilot-models", "codex-models"],
+  "content": "# Claude Code — moteurs (modèles) et effort\n\n## Deux axes distincts, pas un seul\n\nClaude Code expose deux réglages indépendants, avec des règles d'auto-configuration différentes pour chacun — à ne pas confondre :\n\n1. **`model`** (moteur) : `sonnet`, `opus`, `haiku`, `fable`, `inherit`, ou un ID de modèle complet (ex. `claude-opus-4-8`).\n2. **`effort`** : `low`, `medium`, `high` (défaut), `xhigh`, `max` — contrôle la profondeur de réflexion et le volume de tokens dépensés, indépendamment du modèle choisi.\n\nCorrection par rapport à une hypothèse de recherche antérieure (2026-07-16, avant cette fiche) : l'effort n'est **plus** \"encodé dans le choix du modèle\" — c'est un paramètre API à part entière (`output_config.effort`), disponible sur Claude Fable 5, Claude Mythos 5, Opus 4.5 à 4.8, Sonnet 5, Sonnet 4.6. Il affecte tous les tokens de la réponse (texte, appels d'outils, réflexion étendue), pas seulement la réflexion.\n\n## Qui peut configurer quoi\n\n- **`model` par sous-agent : auto-configurable, confirmé.** Le paramètre `model` de l'outil `Agent`/`Task` (dans cet environnement même) prend le pas sur la définition de l'agent (frontmatter `model:`), documenté \"takes precedence over the agent definition's model frontmatter\". Un orchestrateur peut donc choisir le modèle d'un sous-agent qu'il délègue, sans intervention humaine à chaque appel. Défaut du frontmatter : `inherit` (même modèle que la session principale) si non précisé.\n- **`model` pour l'agent en cours (pas un sous-agent) : PAS auto-configurable.** Rien ne permet à l'agent en cours d'exécution de changer son propre modèle en cours de session par une action programmatique (un humain peut le faire via `/fast` ou le picker, mais c'est une commande, pas une action de l'agent lui-même).\n- **`effort` : PAS configurable par sous-agent, contrairement au modèle.** Sourcé sur une issue GitHub officielle (`anthropics/claude-code#25669`, feature request encore ouverte) : \"All subagents inherit the session default as there is no way to set the main agent to high and subagents to low.\" C'est un réglage de session, pas un paramètre de l'outil `Agent`/`Task` (vérifié directement : le schéma de cet outil dans cet environnement n'expose que `model`, aucun paramètre d'effort).\n\n## Conséquence pour Maxime\n\nMaxime (l'orchestrateur Claude) peut choisir lui-même le **modèle** d'un sous-agent qu'il délègue, informé par la taille de la tâche (S/M/L/XL) — capacité technique réelle, sans confirmation humaine requise à chaque appel. Il ne peut en revanche pas différencier l'**effort** par sous-agent : c'est un réglage de session, identique pour tous les agents de la conversation en cours, changé par un humain (menu effort de Claude Code, ou API `output_config.effort` en dehors de Claude Code).\n\n## Note annexe — \"ultracode\"\n\n\"ultracode\" apparaît dans le menu effort de Claude Code mais n'est pas un niveau d'effort API supplémentaire : ça combine `xhigh` avec une permission permanente de lancer des workflows multi-agents (mécanisme \"Mid-conversation system messages\"). Mentionné pour éviter de le confondre avec un 6e niveau d'effort — il n'y en a que 5 (`low`/`medium`/`high`/`xhigh`/`max`), tous documentés sur la page source `effort`.\n\n## Ce qui reste incertain\n\n- Le menu effort de Claude Code (accessible par un humain) n'a pas de commande/flag documenté officiellement pour être piloté par un script/agent plutôt qu'une interaction utilisateur directe — non vérifié plus loin, hors périmètre de cette fiche.\n"
+}
