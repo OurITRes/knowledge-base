@@ -64,55 +64,175 @@
     "path": "active/ad-ds/unattended-deployment.json"
   },
   {
-    "id": "project-goal",
-    "type": "decision",
-    "title": "Project CoreAPI Goals",
-    "theme": "coreapi",
+    "id": "enterprise-access-model",
+    "type": "glossary",
+    "title": "Enterprise Access Model (EAM) — plans de sensibilité Microsoft",
+    "theme": "security-architecture",
     "tags": [
-      "architecture",
-      "dotnet",
-      "jwt"
-    ],
-    "scope": "coreapi",
-    "status": "active",
-    "confidence": "fact",
-    "audience": "project",
-    "source": [
-      "ouritres/coreapi/.claude/knowledge-base/project_coreapi_goal.md"
-    ],
-    "validated": "2026-06-16",
-    "created": "2026-06-16",
-    "ttl_days": 90,
-    "links": [
-      "reference"
-    ],
-    "path": "active/coreapi/project-goal.json"
-  },
-  {
-    "id": "native-exe-json-quoting",
-    "type": "pattern",
-    "title": "PowerShell 5.1 strips quotes when passing JSON to native executables",
-    "theme": "powershell",
-    "tags": [
-      "powershell",
-      "aws-cli",
-      "windows",
-      "quoting"
+      "eam",
+      "tiering",
+      "control-plane",
+      "management-plane",
+      "data-workload-plane",
+      "microsoft"
     ],
     "scope": "global",
     "status": "active",
     "confidence": "fact",
     "audience": "generic",
     "source": [
-      "ouritres/coreapi/.claude/memory/spec-0-learnings.md"
+      "https://learn.microsoft.com/en-us/security/privileged-access-workstations/privileged-access-access-model"
     ],
-    "validated": "2026-07-16",
-    "created": "2026-07-16",
+    "validated": "2026-07-18",
+    "created": "2026-07-18",
     "ttl_days": 180,
     "links": [
-      "unattended-deployment"
+      "zero-standing-access"
     ],
-    "path": "active/powershell/native-exe-json-quoting.json"
+    "path": "active/security-architecture/enterprise-access-model.json"
+  },
+  {
+    "id": "zero-standing-access",
+    "type": "glossary",
+    "title": "Zero standing access, secretless, et gMSA — principes",
+    "theme": "security-architecture",
+    "tags": [
+      "zero-standing-access",
+      "secretless",
+      "gmsa",
+      "jit",
+      "pam"
+    ],
+    "scope": "global",
+    "status": "active",
+    "confidence": "fact",
+    "audience": "generic",
+    "source": [
+      "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/group-managed-service-accounts/group-managed-service-accounts-overview",
+      "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/fargate-linux-gmsa.html"
+    ],
+    "validated": "2026-07-18",
+    "created": "2026-07-18",
+    "ttl_days": 180,
+    "links": [
+      "enterprise-access-model"
+    ],
+    "path": "active/security-architecture/zero-standing-access.json"
+  },
+  {
+    "id": "ecs-fargate-task-isolation",
+    "type": "reference",
+    "title": "ECS EC2 vs Fargate — isolation des tasks",
+    "theme": "aws",
+    "tags": [
+      "ecs",
+      "fargate",
+      "ec2",
+      "isolation",
+      "containers"
+    ],
+    "scope": "global",
+    "status": "active",
+    "confidence": "fact",
+    "audience": "generic",
+    "source": [
+      "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_types.html",
+      "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/fargate-linux-gmsa.html"
+    ],
+    "validated": "2026-07-18",
+    "created": "2026-07-18",
+    "ttl_days": 180,
+    "links": [
+      "zero-standing-access"
+    ],
+    "path": "active/aws/ecs-fargate-task-isolation.json"
+  },
+  {
+    "id": "splunk-cim-data-models",
+    "type": "reference",
+    "title": "Splunk CIM — modèles Authentication et Change",
+    "theme": "siem",
+    "tags": [
+      "splunk",
+      "cim",
+      "audit-log",
+      "authentication",
+      "change"
+    ],
+    "scope": "global",
+    "status": "suspect",
+    "confidence": "hypothesis",
+    "audience": "generic",
+    "source": [
+      "https://help.splunk.com/en/data-management/common-information-model/6.2/data-models/authentication",
+      "https://help.splunk.com/en/splunk-cloud-platform/common-information-model/6.1/data-models/cim-fields-per-associated-data-model",
+      "https://help.splunk.com/en/data-management/common-information-model/6.2/field-mappings/change-field-mapping",
+      "https://help.splunk.com/en/splunk-enterprise/common-information-model"
+    ],
+    "validated": "2026-07-18",
+    "created": "2026-07-18",
+    "ttl_days": 60,
+    "links": [],
+    "path": "active/siem/splunk-cim-data-models.json"
+  },
+  {
+    "id": "sailpoint-identityiq",
+    "type": "reference",
+    "title": "SailPoint IdentityIQ (IIQ) — gouvernance d'accès et workflows d'approbation",
+    "theme": "governance",
+    "tags": [
+      "iam",
+      "iga",
+      "sailpoint",
+      "access-request",
+      "approval",
+      "sod"
+    ],
+    "scope": "global",
+    "status": "active",
+    "confidence": "fact",
+    "audience": "generic",
+    "source": [
+      "https://documentation.sailpoint.com/saas/help/requests/index.html",
+      "https://documentation.sailpoint.com/saas/help/requests/config_ap_roles.html",
+      "https://developer.sailpoint.com/docs/api/v3/access-request-approvals/"
+    ],
+    "validated": "2026-07-18",
+    "created": "2026-07-18",
+    "ttl_days": 180,
+    "links": [
+      "servicenow-itsm-change-management"
+    ],
+    "path": "active/governance/sailpoint-identityiq.json"
+  },
+  {
+    "id": "servicenow-itsm-change-management",
+    "type": "reference",
+    "title": "ServiceNow — tickets et workflow d'approbation (ITSM Change Management)",
+    "theme": "governance",
+    "tags": [
+      "itsm",
+      "servicenow",
+      "change-management",
+      "ticket",
+      "cab",
+      "approval"
+    ],
+    "scope": "global",
+    "status": "active",
+    "confidence": "fact",
+    "audience": "generic",
+    "source": [
+      "https://www.servicenow.com/community/itsm-articles/change-management-process-workflow/ta-p/2299141",
+      "https://www.servicenow.com/community/itsm-forum/change-management-in-servicenow-everything-you-need-to-know/m-p/3439058"
+    ],
+    "validated": "2026-07-18",
+    "created": "2026-07-18",
+    "ttl_days": 180,
+    "links": [
+      "sailpoint-identityiq"
+    ],
+    "path": "active/governance/servicenow-itsm-change-management.json"
   },
   {
     "id": "agent-skills-cross-tool-integration",
@@ -142,33 +262,6 @@
       "vscode-copilot-builtin-tools"
     ],
     "path": "active/agent-tooling/agent-skills-cross-tool-integration.json"
-  },
-  {
-    "id": "vscode-copilot-builtin-tools",
-    "type": "reference",
-    "title": "VS Code / GitHub Copilot Chat -- outils built-in (tools: frontmatter)",
-    "theme": "vscode-copilot",
-    "tags": [
-      "vscode",
-      "copilot",
-      "tools",
-      "builtin"
-    ],
-    "scope": "global",
-    "status": "active",
-    "confidence": "fact",
-    "audience": "generic",
-    "source": [
-      "https://docs.github.com/en/copilot/reference/custom-agents-configuration",
-      "https://github.blog/ai-and-ml/github-copilot/how-were-making-github-copilot-smarter-with-fewer-tools/"
-    ],
-    "validated": "2026-07-13",
-    "created": "2026-07-12",
-    "ttl_days": 90,
-    "links": [
-      "agent-skills-cross-tool-integration"
-    ],
-    "path": "active/vscode-copilot/vscode-copilot-builtin-tools.json"
   },
   {
     "id": "claude-md-hierarchie",
@@ -229,35 +322,6 @@
     "path": "active/claude-config/claude-md-import-mechanism.json"
   },
   {
-    "id": "copilot-instructions-merge",
-    "type": "reference",
-    "title": "GitHub Copilot — fusion automatique de fichiers d'instructions multiples",
-    "theme": "vscode-copilot",
-    "tags": [
-      "copilot",
-      "vscode",
-      "instructions",
-      "config-merge"
-    ],
-    "scope": "global",
-    "status": "active",
-    "confidence": "fact",
-    "audience": "generic",
-    "source": [
-      "https://code.visualstudio.com/docs/agent-customization/custom-instructions",
-      "https://github.com/orgs/community/discussions/170581"
-    ],
-    "validated": "2026-07-16",
-    "created": "2026-07-16",
-    "ttl_days": 90,
-    "links": [
-      "vscode-copilot-builtin-tools",
-      "claude-md-import-mechanism",
-      "codex-agents-md-nesting"
-    ],
-    "path": "active/vscode-copilot/copilot-instructions-merge.json"
-  },
-  {
     "id": "codex-agents-md-nesting",
     "type": "reference",
     "title": "OpenAI Codex — imbrication et fusion des fichiers AGENTS.md",
@@ -315,6 +379,35 @@
     "path": "active/engine-catalog/claude-code-models.json"
   },
   {
+    "id": "codex-models",
+    "type": "reference",
+    "title": "Codex — moteurs (modèles) et effort, catalogue + qui décide",
+    "theme": "engine-catalog",
+    "tags": [
+      "codex",
+      "models",
+      "effort",
+      "engine-catalog"
+    ],
+    "scope": "global",
+    "status": "active",
+    "confidence": "fact",
+    "audience": "generic",
+    "source": [
+      "https://learn.chatgpt.com/docs/config-file/config-reference",
+      "https://learn.chatgpt.com/docs/config-file/config-advanced",
+      "https://github.com/openai/codex/issues/11795"
+    ],
+    "validated": "2026-07-16",
+    "created": "2026-07-16",
+    "ttl_days": 60,
+    "links": [
+      "claude-code-models",
+      "copilot-models"
+    ],
+    "path": "active/engine-catalog/codex-models.json"
+  },
+  {
     "id": "copilot-models",
     "type": "reference",
     "title": "GitHub Copilot — moteurs (modèles) et effort, catalogue + qui décide (CLI/VS Code et cloud agent)",
@@ -348,32 +441,85 @@
     "path": "active/engine-catalog/copilot-models.json"
   },
   {
-    "id": "codex-models",
-    "type": "reference",
-    "title": "Codex — moteurs (modèles) et effort, catalogue + qui décide",
-    "theme": "engine-catalog",
+    "id": "native-exe-json-quoting",
+    "type": "pattern",
+    "title": "PowerShell 5.1 strips quotes when passing JSON to native executables",
+    "theme": "powershell",
     "tags": [
-      "codex",
-      "models",
-      "effort",
-      "engine-catalog"
+      "powershell",
+      "aws-cli",
+      "windows",
+      "quoting"
     ],
     "scope": "global",
     "status": "active",
     "confidence": "fact",
     "audience": "generic",
     "source": [
-      "https://learn.chatgpt.com/docs/config-file/config-reference",
-      "https://learn.chatgpt.com/docs/config-file/config-advanced",
-      "https://github.com/openai/codex/issues/11795"
+      "ouritres/coreapi/.claude/memory/spec-0-learnings.md"
     ],
     "validated": "2026-07-16",
     "created": "2026-07-16",
-    "ttl_days": 60,
+    "ttl_days": 180,
     "links": [
-      "claude-code-models",
-      "copilot-models"
+      "unattended-deployment"
     ],
-    "path": "active/engine-catalog/codex-models.json"
+    "path": "active/powershell/native-exe-json-quoting.json"
+  },
+  {
+    "id": "copilot-instructions-merge",
+    "type": "reference",
+    "title": "GitHub Copilot — fusion automatique de fichiers d'instructions multiples",
+    "theme": "vscode-copilot",
+    "tags": [
+      "copilot",
+      "vscode",
+      "instructions",
+      "config-merge"
+    ],
+    "scope": "global",
+    "status": "active",
+    "confidence": "fact",
+    "audience": "generic",
+    "source": [
+      "https://code.visualstudio.com/docs/agent-customization/custom-instructions",
+      "https://github.com/orgs/community/discussions/170581"
+    ],
+    "validated": "2026-07-16",
+    "created": "2026-07-16",
+    "ttl_days": 90,
+    "links": [
+      "vscode-copilot-builtin-tools",
+      "claude-md-import-mechanism",
+      "codex-agents-md-nesting"
+    ],
+    "path": "active/vscode-copilot/copilot-instructions-merge.json"
+  },
+  {
+    "id": "vscode-copilot-builtin-tools",
+    "type": "reference",
+    "title": "VS Code / GitHub Copilot Chat -- outils built-in (tools: frontmatter)",
+    "theme": "vscode-copilot",
+    "tags": [
+      "vscode",
+      "copilot",
+      "tools",
+      "builtin"
+    ],
+    "scope": "global",
+    "status": "active",
+    "confidence": "fact",
+    "audience": "generic",
+    "source": [
+      "https://docs.github.com/en/copilot/reference/custom-agents-configuration",
+      "https://github.blog/ai-and-ml/github-copilot/how-were-making-github-copilot-smarter-with-fewer-tools/"
+    ],
+    "validated": "2026-07-13",
+    "created": "2026-07-12",
+    "ttl_days": 90,
+    "links": [
+      "agent-skills-cross-tool-integration"
+    ],
+    "path": "active/vscode-copilot/vscode-copilot-builtin-tools.json"
   }
 ]

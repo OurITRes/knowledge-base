@@ -1,0 +1,28 @@
+{
+  "id": "ecs-fargate-task-isolation",
+  "type": "reference",
+  "title": "ECS EC2 vs Fargate — isolation des tasks",
+  "theme": "aws",
+  "tags": [
+    "ecs",
+    "fargate",
+    "ec2",
+    "isolation",
+    "containers"
+  ],
+  "scope": "global",
+  "status": "active",
+  "confidence": "fact",
+  "audience": "generic",
+  "source": [
+    "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_types.html",
+    "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/fargate-linux-gmsa.html"
+  ],
+  "validated": "2026-07-18",
+  "created": "2026-07-18",
+  "ttl_days": 180,
+  "links": [
+    "zero-standing-access"
+  ],
+  "content": "# ECS — launch type EC2 vs Fargate, isolation\n\n## EC2 launch type\n\nLes tasks ECS s'exécutent comme des conteneurs sur des instances EC2 gérées par le client, en partageant le **même noyau hôte**. La documentation AWS elle-même est explicite : les conteneurs ne sont pas une frontière d'isolation de sécurité garantie — un conteneur compromis peut potentiellement atteindre des ressources d'autres tasks colocalisées sur le même hôte (évasion de conteneur, attaque via le noyau partagé).\n\n## Fargate launch type\n\nChaque task tourne dans sa **propre micro-VM** dédiée — frontière d'isolation matérielle réelle entre tasks, même si elles appartiennent à des services différents sur le même compte. Compromis : moins de contrôle sur l'instance sous-jacente (pas d'accès SSH à l'hôte, pas de choix du type d'instance EC2), en échange d'une isolation plus forte par défaut.\n\n## gMSA sur Fargate\n\nSupport depuis **mars 2024**, mais **limité aux conteneurs Linux**, via le mode **domainless gMSA** et le daemon `credentials-fetcher` packagé par AWS. Pas de support équivalent documenté pour des conteneurs Windows sur Fargate — vérifier ce point avant de bâtir une architecture qui en dépendrait.\n\nEn mode domainless, le conteneur n'est **pas** joint au domaine. `credentials-fetcher` récupère un identifiant AD **statique** (utilisateur + mot de passe + nom de domaine) stocké dans un secret AWS Secrets Manager, référencé par le fichier CredSpec de la task — ce n'est donc **pas une chaîne entièrement secretless** : il existe un credential AD permanent au bootstrap, protégé par IAM (accès au secret scoped au rôle d'exécution de la task), pas par une rotation JIT. Le conteneur applicatif, lui, ne voit jamais ce mot de passe — `credentials-fetcher` le consomme et expose un ticket Kerberos au conteneur.\n\n## Quand privilégier Fargate\n\nPertinent quand la charge de travail est une **passerelle privilégiée** vers un système sensible (ex. LDAP/AD) où la compromission d'un voisin de conteneur serait un risque inacceptable — le coût de l'isolation micro-VM se justifie par l'enjeu, pas par défaut pour toute charge de travail."
+}

@@ -1,0 +1,29 @@
+{
+  "id": "servicenow-itsm-change-management",
+  "type": "reference",
+  "title": "ServiceNow — tickets et workflow d'approbation (ITSM Change Management)",
+  "theme": "governance",
+  "tags": [
+    "itsm",
+    "servicenow",
+    "change-management",
+    "ticket",
+    "cab",
+    "approval"
+  ],
+  "scope": "global",
+  "status": "active",
+  "confidence": "fact",
+  "audience": "generic",
+  "source": [
+    "https://www.servicenow.com/community/itsm-articles/change-management-process-workflow/ta-p/2299141",
+    "https://www.servicenow.com/community/itsm-forum/change-management-in-servicenow-everything-you-need-to-know/m-p/3439058"
+  ],
+  "validated": "2026-07-18",
+  "created": "2026-07-18",
+  "ttl_days": 180,
+  "links": [
+    "sailpoint-identityiq"
+  ],
+  "content": "# ServiceNow — ITSM Change Management\n\nOutil ITSM (IT Service Management), suit les pratiques ITIL. Rôle générique pertinent ici : gérer un ticket (change request) à travers un cycle de vie standardisé, avec approbation avant exécution — utilisable comme preuve d'autorisation pour des flux qui n'exigent pas une gouvernance IGA complète (voir IIQ) mais où une trace de validation formelle reste requise.\n\n## Types de demande de changement\n\nTrois catégories, chacune avec son propre niveau de revue et d'évaluation du risque :\n- **Standard** — changement pré-approuvé, à faible risque, répétitif\n- **Normal** — passe par le cycle de revue complet\n- **Emergency** — changement urgent, cycle de revue accéléré mais toujours tracé\n\n## Étapes du workflow d'approbation type\n\n1. **Évaluation initiale** — le Change Coordinator évalue la demande et la soumet à l'approbation du manager\n2. **Approbation manager** — approuve (la demande passe au CAB) ou rejette\n3. **Revue CAB** (Change Advisory Board) — approuve, ou propose des modifications\n4. **Implémentation** — un changement ne peut pas passer en implémentation tant que toutes les approbations requises ne sont pas obtenues\n\nRôles impliqués : Change Owner, Change Manager, Change Initiator, membres du CAB, équipes techniques.\n\n## Pertinence pour un modèle d'autorisation\n\nUn ticket ServiceNow correctement approuvé peut servir de preuve d'autorisation suffisante pour des flux à risque modéré, sans exiger le passage par un outil de gouvernance IGA complet (IIQ) à chaque appel — utile pour distinguer les cas où une gouvernance humaine légère suffit de ceux qui exigent le cycle complet."
+}
