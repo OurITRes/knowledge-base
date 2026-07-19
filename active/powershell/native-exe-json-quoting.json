@@ -1,0 +1,26 @@
+{
+  "id": "native-exe-json-quoting",
+  "type": "pattern",
+  "title": "PowerShell 5.1 strips quotes when passing JSON to native executables",
+  "theme": "powershell",
+  "tags": [
+    "powershell",
+    "aws-cli",
+    "windows",
+    "quoting"
+  ],
+  "scope": "global",
+  "status": "active",
+  "confidence": "fact",
+  "audience": "generic",
+  "source": [
+    "ouritres/coreapi/.claude/memory/spec-0-learnings.md"
+  ],
+  "validated": "2026-07-16",
+  "created": "2026-07-16",
+  "ttl_days": 180,
+  "links": [
+    "unattended-deployment"
+  ],
+  "content": "# PowerShell 5.1 strips quotes when passing JSON to native executables\n\n## Problem\n\nWhen calling a Windows native executable (e.g. `aws.exe`, or any CLI outside the\nPowerShell/.NET world) from PowerShell 5.1 with a JSON string argument, bare `\"`\ncharacters in that string get silently stripped before the native process ever sees\nthem. The native CLI then receives malformed JSON and fails to parse it — often with a\nconfusing error that looks like a CLI bug, not a quoting bug.\n\n## Why\n\nPowerShell does not perform the quote-escaping itself when marshalling arguments to a\nnative executable — argument parsing at that boundary is handled by Windows'\n`CommandLineToArgvW`, which has its own (different) quoting rules. PowerShell's own\nstring quoting and the native process's argv parsing disagree, and bare `\"` in the\nvalue gets lost in translation.\n\n## Fix\n\nEscape every `\"` in the JSON string as `\\\"` before passing it as an argument to a\nnative exe:\n\n```powershell\n$escaped = $json -replace '\"', '\\\"'\naws.exe some-command --cli-input-json $escaped\n```\n\n## Concrete case this was found in\n\nGenerating an IAM trust policy / DCPROMO answer file as JSON and passing it to\n`aws.exe` from a PowerShell 5.1 provisioning script (coreapi Spec 0) — parsing failed\nuntil quotes were escaped this way. Several other approaches (writing to `file://`,\n`ConvertTo-Json` piping, base64 encoding) were tried first; the root cause was only\nfound by running the exact `aws.exe` invocation manually and inspecting what it\nactually received, rather than guessing at the JSON-generation side.\n\n## Applies to\n\nAny PowerShell 5.1 script that shells out to a native executable with a JSON (or any\nquote-containing) string argument — not specific to AWS CLI or Active Directory.\n"
+}
